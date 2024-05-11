@@ -76,6 +76,8 @@ def read_command_line():
     parser.add_argument("--drop_rate", type=float, default=0.2, help="dropout rate")
     parser.add_argument(
         "--predictor", type=str, default="rnn", help="[rnn | transformer]"
+        # "--predictor", type=str, default="bert", help="[rnn | transformer]"
+        
     )
     # training/evaluation parameters
     parser.add_argument("--gpu_idx", type=str, default="0", help="GPU index")
