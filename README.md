@@ -1,5 +1,7 @@
 **[NEW!] Detailed examples for VQ Challenge submission available here: [VQ2D README](./VQ2D/README.md)**
-
+<!-- #git clone -b v1.0 https://github.com/HMiry/episodic-memory episodic-memory-v1 -->
+<!-- git tag -a v1.0 -m "Version 1.0"
+git push origin v1.0 -->
 **[NEW!] 2022 [Ego4D Challenges](https://ego4d-data.org/docs/challenge/) now open for Episodic Memory**
 - [Natural Language Queries](https://eval.ai/web/challenges/challenge-page/1629/overview)
 - [Visual Queries 2D](https://eval.ai/web/challenges/challenge-page/1843/overview)
