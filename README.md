@@ -68,4 +68,3 @@ This project is released under the MIT License. Details are provided in the LICE
 
 For more detailed documentation and setup instructions, or to download the dataset, please visit [Ego4D Documentation](https://ego4d-data.org/docs/).
 
-This README is structured to clearly convey the scope, methodology, and outputs of your project, ensuring that collaborators and researchers can easily understand and engage with your work.
