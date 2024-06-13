@@ -1,42 +1,71 @@
-**[NEW!] Detailed examples for VQ Challenge submission available here: [VQ2D README](./VQ2D/README.md)**
+# Ego4D Natural Language Queries (NLQ) Challenge
 
-**[NEW!] 2022 [Ego4D Challenges](https://ego4d-data.org/docs/challenge/) now open for Episodic Memory**
-- [Natural Language Queries](https://eval.ai/web/challenges/challenge-page/1629/overview)
-- [Visual Queries 2D](https://eval.ai/web/challenges/challenge-page/1843/overview)
-- [Moments queries](https://eval.ai/web/challenges/challenge-page/1626/overview)
-- [Visual Queries 3D](https://eval.ai/web/challenges/challenge-page/1646/overview)
+Welcome to our repository for the Ego4D NLQ Challenge. Here, we are advancing video understanding by integrating cutting-edge video-language models to address natural language queries using egocentric video data.
 
-Please note that:
-- VQ test annotations for challenge submissions are now available: [Ego4D Challenges](https://ego4d-data.org/docs/challenge/)
-- NLQ annotations have a known issue where ~14% of annotations have a near-0 query window and will result in under reported performance for the challenge (which will be corrected with a future dataset update): [NLQ Forum Post](https://discuss.ego4d-data.org/t/nlq-annotation-zero-temporal-windows/36)
+## Project Overview
 
-# Ego4D Episodic Memory Benchmark
+Our team leverages the extensive Ego4D egocentric video dataset to address the Natural Language Queries (NLQ) benchmark. This benchmark challenges models to identify video segments that answer specific natural language queries, enhancing the interaction between visual content and human language.
 
-[EGO4D](https://ego4d-data.org/docs/) is the world's largest egocentric (first person) video ML dataset and benchmark suite.
+### Key Steps and Modifications
 
-For more information on Ego4D or to download the dataset, read: [Start Here](https://ego4d-data.org/docs/start-here/).
+1. **Model Training**: We trained multiple configurations of the VSLBase and VSLNet models, specifically:
+   - `VSLNet_with_omnivore`
+   - `VSLNet_with_egovlp`
+   - `VSLNet_glove`
+   - `VSLBase_with_omnivore`
+   - `VSLBase_with_egovlp`
+   
+   These models were trained on pre-extracted features from EgoVLP and Omnivore, showcasing improvements over traditional models using SlowFast features.
+   
+2. **Feature Handling**: Integration of advanced features demonstrates superior handling of egocentric video data.
+3. **Custom Encoder Implementation**: We transitioned from BERT to GloVe for text encoding to analyse the linguistic comprehension.
+4. **Query Answering Extension**: Utilizing the Video-LLaVA model, we generated textual responses from video segments accurately retrieved by VSLNet for selected NLQ queries.
 
-The [Episodic Memory Benchmark](https://ego4d-data.org/docs/benchmarks/episodic-memory/) aims to make past video queryable and requires localizing where the answer can be seen within the user’s past video.  The repository contains the code needed to reproduce the results in the [Ego4D: Around the World in 3,000 Hours of Egocentric Video](https://arxiv.org/abs/2110.07058).
+### Extension and Innovation
 
-There are 4 related tasks within a benchmark. Please see the README within each benchmark for details on setting up the codebase.
+Our innovative workflow generates direct textual answers from video segments:
+1. **Query Selection**: We chose 50 precise queries where VSLNet accurately retrieved the correct video segments.
+2. **Segment Extraction**: Using ffmpeg, we extracted the relevant video segments.
+3. **Textual Answer Generation**: Employed the Video-LLaVA model to produce textual answers from the video data.
 
-# [VQ2D](./VQ2D/README.md): *Visual Queries with 2D Localization*
+## Repository Content
 
-This task asks: “When did I last see [this]?”  Given an egocentric video clip and an image crop depicting the query object, the goal is to return the last occurrence of the object in the input video, in terms of the tracked bounding box (2D + temporal localization).  The novelty of this task is to upgrade traditional object instance recognition to deal with video, and particularly ego-video with challenging view transformations.
+- **NoteBooks**: This newly added folder contains detailed Jupyter notebooks documenting our experiments and their results. Each notebook corresponds to a specific model configuration or part of our pipeline:
+  - `VSLNet_with_omnivore.ipynb`
+  - `VSLNet_with_egovlp.ipynb`
+  - `VSLNet_glove.ipynb`
+  - `VSLBase_with_omnivore.ipynb`
+  - `VSLBase_with_egovlp.ipynb`
+  - `VideoLLava.ipynb` – Details the creation of `sampled_nlq_data.json` from `nlq_val.json` and `vslnet_19_6460_preds.json`, which are also stored within the `jsons` sub-folder.
 
-# [VQ3D](./VQ3D/README.md): *Visual Queries with 3D Localization*
+### Detailed Steps
 
-This task asks, “Where did I last see [this]?”  Given an egocentric video clip and an image crop depicting the query object, the goal is to localize the last time it was seen in the video and return a 3D displacement vector from the camera center of the query frame to the center of the object in 3D.  Hence, this task builds on the 2D localization above, expanding it to require localization in the 3D environment.  The task is novel in how it requires both video object instance recognition and 3D reasoning.
+#### Data and Setup
+- **Environment Setup**: Instructions for setting up the environment and installing necessary tools.
+- **Data Integrity Check**: Verify the integrity of the downloaded files to ensure data consistency.
 
-# [NLQ](./NLQ/README.md): *Natural Language Queries*
+#### Model Training and Evaluation
+- **Training Models**: Steps to train each configuration using pre-extracted features.
+- **Performance Evaluation**: Compare the results with baseline models to highlight improvements.
 
-This task asks, "What/when/where....?" -- general natural language questions about the video past.    Given a video clip and a query expressed in natural language, the goal is to localize the temporal window within all the video history where the answer to the question is evident.  The task is novel because it requires searching through video to answer flexible linguistic queries.  For brevity, these example clips illustrate the video surrounding the ground truth (whereas the original input videos are each ~8 min). 
+#### Extension - Query Answer Generation
+- **Video Segment Extraction**: Methods for extracting video segments corresponding to selected queries.
+- **Textual Answer Generation**: Using the Video-LLaVA model to generate textual responses directly from the video segments.
 
-# [MQ](./MQ/README.md): *Moments Queries*
+## Results
 
-This task asks, "When did I do X?”  Given an egocentric video and an activity name (i.e., a "moment"), the goal is to localize all instances of that activity in the past video.  The task is activity detection, but specifically for the egocentric activity of the camera wearer who is largely out of view.
+Our results demonstrate significant improvements over baseline models, providing robust capabilities in generating direct textual responses, thus enhancing the practical usability of video query systems.
 
+## Challenges and Further Information
+- [NLQ Challenge Overview](https://eval.ai/web/challenges/challenge-page/1629/overview)
+- [Discussion on NLQ Annotation Issues](https://discuss.ego4d-data.org/t/nlq-annotation-zero-temporal-windows/36)
 
-License
+## License
 
-Ego4D is released under the MIT License.
+This project is released under the MIT License. Details are provided in the LICENSE file.
+
+## More Information
+
+For more detailed documentation and setup instructions, or to download the dataset, please visit [Ego4D Documentation](https://ego4d-data.org/docs/).
+
+This README is structured to clearly convey the scope, methodology, and outputs of your project, ensuring that collaborators and researchers can easily understand and engage with your work.
