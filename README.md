@@ -9,11 +9,11 @@ Our team leverages the extensive Ego4D egocentric video dataset to address the N
 ### Key Steps and Modifications
 
 1. **Model Training**: We trained multiple configurations of the VSLBase and VSLNet models, specifically:
-   - `VSLNet_with_omnivore`
-   - `VSLNet_with_egovlp`
-   - `VSLNet_glove`
-   - `VSLBase_with_omnivore`
-   - `VSLBase_with_egovlp`
+   - `VSLNet_omnivore_bert`
+   - `VSLNet_egovlp_bert`
+   - `VSLNet_egovlp_Glove`
+   - `VSLBase_omnivore_bert`
+   - `VSLBase_egovlp_bert`
    
    These models were trained on pre-extracted features from EgoVLP and Omnivore, showcasing improvements over traditional models using SlowFast features.
    
@@ -31,11 +31,11 @@ Our innovative workflow generates direct textual answers from video segments:
 ## Repository Content
 
 - **NoteBooks**: This newly added folder contains detailed Jupyter notebooks documenting our experiments and their results. Each notebook corresponds to a specific model configuration or part of our pipeline:
-  - `VSLNet_with_omnivore.ipynb`
-  - `VSLNet_with_egovlp.ipynb`
-  - `VSLNet_glove.ipynb`
-  - `VSLBase_with_omnivore.ipynb`
-  - `VSLBase_with_egovlp.ipynb`
+  - `VSLNet_omnivore_bert.ipynb`
+  - `VSLNet_egovlp_bert.ipynb`
+  - `VSLNet_egovlp_Glove.ipynb`
+  - `VSLBase_omnivore_bert.ipynb`
+  - `VSLBase_egovlp_bert.ipynb`
   - `VideoLLava.ipynb` – Details the creation of `sampled_nlq_data.json` from `nlq_val.json` and `vslnet_19_6460_preds.json`, which are also stored within the `jsons` sub-folder.
 
 ### Detailed Steps
@@ -67,4 +67,3 @@ This project is released under the MIT License. Details are provided in the LICE
 ## More Information
 
 For more detailed documentation and setup instructions, or to download the dataset, please visit [Ego4D Documentation](https://ego4d-data.org/docs/).
-
